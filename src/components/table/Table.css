@@ -1,0 +1,9 @@
+table>thead .header {
+    color: #fff;
+    background-color: var(--color-red2);
+    min-width: 10rem;
+    font-size: 1.8rem;
+    font-weight: 500;
+    padding: 5px;
+    border-right: 8px solid #fff;
+}

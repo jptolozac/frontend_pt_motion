@@ -1,0 +1,38 @@
+.circle {
+    background-color: #fff;
+    position: fixed;
+    top: 50vh;
+    right: -45%;
+    transform: translateY(-50%);
+    opacity: 1;
+    width: 50vw;
+    height: 50vw;
+    /* border: 1px solid black; */
+    border-radius: 100%;
+    z-index: 20;
+    filter: drop-shadow(0px 0px 55px rgba(0, 0, 0, 0.4));
+    /* animation: short-lived-expansion 3s normal both ; */
+}
+
+@keyframes short-lived-expansion {
+    from {
+        width: 50vw;
+        height: 50vw;
+    }
+    to {
+        width: 200vw;
+        height: 200vw;
+    }
+}
+
+@keyframes short-lived-contraction {
+    from {
+        width: 200vw;
+        height: 200vw;
+    }
+
+    to {
+        width: 50vw;
+        height: 50vw;
+    }
+}
