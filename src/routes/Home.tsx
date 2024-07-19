@@ -7,7 +7,7 @@ export const Home = ({ ...props }: React.HTMLAttributes<HTMLElement>) => {
             <div className="flex justify-between mt-8 mx-4 break-all">
                 <a href="https://monitoringinnovation.com/" target="_blank">MONITORINGINNOVATION</a>
                 <a href="https://gpscontrol.co/" target="_blank">GPS CONTROL</a>
-                <a href="" target="_blank">Link repo front</a>
+                <a href="https://github.com/jptolozac/frontend_pt_motion" target="_blank">Link repo front</a>
                 <a href="" target="_blank">Link repo back</a>
             </div>
         </section>
