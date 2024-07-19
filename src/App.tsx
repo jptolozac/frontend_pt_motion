@@ -7,8 +7,8 @@ function App() {
 
   return (
     <MainLayout>
-      <Home className='-mt-4 text-blue1 max-w-screen-xl mx-auto' />
-      <DealerInformation className='max-w-screen-2xl'/>
+      <Home className='text-blue1 max-w-screen-xl mx-auto' />
+      <DealerInformation className='max-w-screen-3xl'/>
     </MainLayout>
   )
 }

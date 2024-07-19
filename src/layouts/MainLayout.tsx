@@ -5,7 +5,7 @@ export const MainLayout = ({ children }: { children: React.ReactNode }) => {
     return (
         <>
             <Header />
-            <main className="mx-auto relative overflow-hidden">
+            <main className="mx-auto relative">
                 {children}
             </main>
             <Footer />

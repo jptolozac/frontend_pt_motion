@@ -1,0 +1,45 @@
+.button-section{
+    animation-duration: .2s;
+    animation-timing-function: ease-out;
+    animation-direction: normal;
+    animation-play-state: running;
+    animation-delay: 0s;
+    animation-fill-mode: both;
+    margin-bottom: 1rem;
+}
+.create-buttons{
+    display: flex;
+    justify-content: end;
+    gap: 50px;
+}
+
+@keyframes incoming-segment {
+    from {
+        display: none;
+        transform: translateX(-30vw);
+    }
+    to {
+        display: flex;
+        transform: translateX(0);
+    }
+}
+@keyframes show-segment {
+    from {
+        display: none;
+        opacity: 0;
+    }
+    to {
+        display: flex;
+        opacity: 1;
+    }
+}
+@keyframes hide-segment {
+    from {
+        display: flex;
+        opacity: 1;
+    }
+    to {
+        display: none;
+        opacity: 0;
+    }
+}

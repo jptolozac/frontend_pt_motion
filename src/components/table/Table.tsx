@@ -7,7 +7,7 @@ interface TableProps {
 
 export const Table = ({ headers, children }: TableProps) => {
     return (
-        <table className="h-fit">
+        <table className="h-fit max-w-full">
             <thead>
                 <tr>
                     {headers &&
