@@ -11,33 +11,37 @@ interface TextInputProps {
     active?: boolean;
 }
 
-export const TextInput = ({ img, alt, name, placeholder, active=true }: TextInputProps) => {
+export const TextInput = ({ img, alt, name, placeholder, active = true }: TextInputProps) => {
     const { register, reset } = useFormContext()
 
     useEffect(() => {
-        if(!active){
+        if (!active) {
             reset()
         }
     }, [active, reset])
 
     return (
         <InputBaseForm name={name} active={active}>
-            <div className="flex gap-8">
+            <div className="flex gap-8 items-center">
                 {img &&
-                    <img
-                        src={img}
-                        alt={alt || "Imágen en referencia al ínput"}
-                        width={47}
-                        className='object-contain'
-                    />
+                    <div className="max-w-[47px]">
+                        <img
+                            src={img}
+                            alt={alt || "Imágen en referencia al ínput"}
+                            // width={47}
+                            className='object-contain'
+                        />
+                    </div>
                 }
-                <input
-                    className="custom-input"
-                    placeholder={placeholder}
-                    disabled={!active}
+                <div className="w-full">
+                    <input
+                        className="custom-input"
+                        placeholder={placeholder}
+                        disabled={!active}
 
-                    {...register(name)}
-                />
+                        {...register(name)}
+                    />
+                </div>
             </div>
         </InputBaseForm>
     )

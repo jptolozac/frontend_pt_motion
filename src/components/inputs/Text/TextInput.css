@@ -3,9 +3,9 @@
     padding-left: 1.5rem;
     border: solid 2px var(--color-grey1);
     border-radius: 1.2rem;
-    height: 62px;
+    height: 60px;
     width: 100%;
-    font-size: 1.7rem;
+    font-size: clamp(1.7rem, 2.5vw, 1.6rem);
     color: var(--color-grey1);
     font-weight: 500;
 }

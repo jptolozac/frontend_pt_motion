@@ -22,7 +22,7 @@ export default {
       "4xl": "1920px"
     },
     boxShadow: {
-      "custom-md": "0px 0px 10px grey"
+      "custom-md": "0px 4px 10px #C5C5C5"
     }
   },
   plugins: [],

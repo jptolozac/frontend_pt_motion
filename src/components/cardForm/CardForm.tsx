@@ -23,10 +23,10 @@ interface CardFormProps {
     currentRecord?: IDealer
 }
 
-export const CardForm = ({ 
-    areEditButtonsActive = false, 
-    handleActiveEditButtons, 
-    handleAdd, 
+export const CardForm = ({
+    areEditButtonsActive = false,
+    handleActiveEditButtons,
+    handleAdd,
     handleEdit,
     currentRecord
 }: CardFormProps) => {
@@ -50,13 +50,13 @@ export const CardForm = ({
         setIsEditActive(areEditButtonsActive)
     }, [areEditButtonsActive])
 
-    
+
     const methods = useForm<IDealer>({
         resolver: yupResolver(createDealerItem) as unknown as Resolver<IDealer>,
     })
 
-    useEffect(() => {        
-        if(isEditActive)
+    useEffect(() => {
+        if (isEditActive)
             methods.reset(currentRecord)
         else
             methods.reset({
@@ -67,75 +67,77 @@ export const CardForm = ({
     }, [currentRecord, isEditActive, methods])
 
     return (
-        <FormProvider {...methods}>
-            <form
-                onSubmit={methods.handleSubmit(
-                    areCreateButtonsActive && !isEditActive
-                        ? handleAddSubmit
-                        : handleEdit
+        <div className="h-fit max-w-full px-4 inline-block">
+            <FormProvider {...methods}>
+                <form
+                    onSubmit={methods.handleSubmit(
+                        areCreateButtonsActive && !isEditActive
+                            ? handleAddSubmit
+                            : handleEdit
                     )}
-                className="shadow-custom-md px-16 py-2 rounded-xl h-fit w-[650px] relative"
-            >
-                <button
-                    type="button"
-                    className="absolute top-4 left-6"
-                    onClick={() => setAreCreateButtonsActive(true)}
-                    disabled={areCreateButtonsActive}
+                    className="shadow-custom-md px-16 py-2 rounded-3xl h-fit w-[600px] min-w-[500px] relative"
                 >
-                    <img src={createIcon} alt="Botón para crear un registro" />
-                </button>
-                <TextInput
-                    name="brand"
-                    img={areCreateButtonsActive || isEditActive ? carIconActive : carIcon}
-                    placeholder="Mazda"
-                    active={areCreateButtonsActive || isEditActive}
-                />
-                <TextInput
-                    name="branch"
-                    img={areCreateButtonsActive || isEditActive ? locationIconActive : locationIcon}
-                    placeholder="Chapinero"
-                    active={areCreateButtonsActive || isEditActive}
-                />
-                <TextInput
-                    name="applicant"
-                    img={areCreateButtonsActive || isEditActive ? personIconActive : personIcon}
-                    placeholder="David Sandoval"
-                    active={areCreateButtonsActive || isEditActive}
-                />
-                <div
-                    className="button-section create-buttons"
-                    style={{
-                        animationName: areCreateButtonsActive
-                            ? "incoming-segment"
-                            : "hide-segment"
-                    }}>
                     <button
                         type="button"
-                        onClick={() => setAreCreateButtonsActive(false)}
-                        className="border-2 border-red1 px-6 py-1 text-3xl text-grey1 font-[500] rounded-xl min-w-[175px]"
-                    >Cancelar</button>
-                    <button
-                        className="border-2 border-blue2 px-6 py-1 text-3xl text-grey1 font-[500] rounded-xl min-w-[175px]"
-                    >Crear</button>
-                </div>
-                <div
-                    className="button-section flex justify-end gap-4"
-                    style={{
-                        animationName: isEditActive
-                            ? "show-segment"
-                            : "hide-segment"
-                    }}>
-                    <button
-                        type="button"
-                        onClick={handleEditButtonsChange}
+                        className="absolute top-4 left-6"
+                        onClick={() => setAreCreateButtonsActive(true)}
+                        disabled={areCreateButtonsActive}
                     >
-                        <img src={cancelIcon} alt="Ícono de cancelación" />
+                        <img src={createIcon} alt="Botón para crear un registro" />
                     </button>
-                    <button>
-                        <img src={confirmIcon} alt="Ícono de confirmación" />
-                    </button>
-                </div>
-            </form>
-        </FormProvider>
+                    <TextInput
+                        name="brand"
+                        img={areCreateButtonsActive || isEditActive ? carIconActive : carIcon}
+                        placeholder="Mazda"
+                        active={areCreateButtonsActive || isEditActive}
+                    />
+                    <TextInput
+                        name="branch"
+                        img={areCreateButtonsActive || isEditActive ? locationIconActive : locationIcon}
+                        placeholder="Chapinero"
+                        active={areCreateButtonsActive || isEditActive}
+                    />
+                    <TextInput
+                        name="applicant"
+                        img={areCreateButtonsActive || isEditActive ? personIconActive : personIcon}
+                        placeholder="David Sandoval"
+                        active={areCreateButtonsActive || isEditActive}
+                    />
+                    <div
+                        className="button-section create-buttons"
+                        style={{
+                            animationName: areCreateButtonsActive
+                                ? "incoming-segment"
+                                : "hide-segment"
+                        }}>
+                        <button
+                            type="button"
+                            onClick={() => setAreCreateButtonsActive(false)}
+                            className="border-2 border-red1 px-6 py-1 text-3xl text-grey1 font-[500] rounded-xl min-w-[175px]"
+                        >Cancelar</button>
+                        <button
+                            className="border-2 border-blue2 px-6 py-1 text-3xl text-grey1 font-[500] rounded-xl min-w-[175px]"
+                        >Crear</button>
+                    </div>
+                    <div
+                        className="button-section flex justify-end gap-4"
+                        style={{
+                            animationName: isEditActive
+                                ? "show-segment"
+                                : "hide-segment"
+                        }}>
+                        <button
+                            type="button"
+                            onClick={handleEditButtonsChange}
+                        >
+                            <img src={cancelIcon} alt="Ícono de cancelación" />
+                        </button>
+                        <button>
+                            <img src={confirmIcon} alt="Ícono de confirmación" />
+                        </button>
+                    </div>
+                </form>
+            </FormProvider>
+        </div>
     )
 }

@@ -1,9 +1,14 @@
 table>thead .header {
     color: #fff;
     background-color: var(--color-red2);
-    min-width: 10rem;
-    font-size: 1.8rem;
+    min-width: 12rem;
+    font-size: 2rem;
     font-weight: 500;
     padding: 5px;
     border-right: 8px solid #fff;
+    border-bottom: 6px solid #fff;
+}
+
+table *{
+    font-size: clamp(1.6rem, 2.5vw, 1.6rem);
 }

@@ -2,7 +2,7 @@ import { HomepageLogo } from "../components/homepageLogo/HomepageLogo"
 
 export const Home = ({ ...props }: React.HTMLAttributes<HTMLElement>) => {
     return (
-        <section id="home" {...props} className={`relative w-full ${props.className}`}>
+        <section id="home" {...props} className={`relative w-full min-h-[90dvh] ${props.className}`}>
             <HomepageLogo />
             <div className="flex flex-wrap justify-between mt-8 mx-4 break-all gap-4">
                 <a href="https://monitoringinnovation.com/" target="_blank">MONITORINGINNOVATION</a>

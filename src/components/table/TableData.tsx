@@ -5,7 +5,7 @@ export const TableData = ({
     ...props 
 }: { children: React.ReactNode } & TdHTMLAttributes<HTMLTableCellElement>) => {
     return (
-        <td {...props} className={`pl-1 pr-4 first:pl-0 text-3xl text-grey1 font-[500] py-2 break-all ${props.className}`}>
+        <td {...props} className={`pl-1 pr-4 first:pl-0 text-grey1 py-1 font-[450] break-all max-w-[320px] ${props.className}`}>
             {children}
         </td>
     )

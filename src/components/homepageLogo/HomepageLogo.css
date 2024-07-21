@@ -24,7 +24,9 @@
     font-weight: 700;
     z-index: 20;
     transform: translateY(50%);
-    animation: move-down-logo-text 1.5s normal;
+    /* animation: move-down-logo-text 1.5s normal; */
+    animation-duration: 1.5s;
+    animation-direction: normal;
     text-shadow:
         3px 0 #fff,
         -3px 0 #fff,
@@ -36,7 +38,9 @@
         -3px 3px #fff;
 }
 .main-logo>img {
-    animation: move-up 1.5s normal;
+    /* animation: move-up 1.5s normal; */
+    animation-duration: 1.5s;
+    animation-direction: normal;
 }
 
 @keyframes move-up {
