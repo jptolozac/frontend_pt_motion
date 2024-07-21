@@ -8,7 +8,7 @@ export const Home = ({ ...props }: React.HTMLAttributes<HTMLElement>) => {
                 <a href="https://monitoringinnovation.com/" target="_blank">MONITORINGINNOVATION</a>
                 <a href="https://gpscontrol.co/" target="_blank">GPS CONTROL</a>
                 <a href="https://github.com/jptolozac/frontend_pt_motion" target="_blank">Link repo front</a>
-                <a href="" target="_blank">Link repo back</a>
+                <a href="https://github.com/jptolozac/backend_pt_motion" target="_blank">Link repo back</a>
             </div>
         </section>
     )
