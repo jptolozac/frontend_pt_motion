@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import { yupResolver } from "@hookform/resolvers/yup"
 import { createDealerItem } from "@/helpers/Validations"
 import { Resolver, SubmitHandler, useForm } from "react-hook-form"
@@ -16,13 +16,13 @@ export const useCardForm = ({
     const [areCreateButtonsActive, setAreCreateButtonsActive] = useState(false)
     const [isEditActive, setIsEditActive] = useState(false)
 
-    const handleEditButtonsChange = () => {
-        currentRecord = undefined
+    const handleEditButtonsChange = useCallback(() => {
+        // currentRecord = undefined
 
         if (handleActiveEditButtons)
             handleActiveEditButtons()
         setIsEditActive(!isEditActive)
-    }
+    }, [handleActiveEditButtons, isEditActive])
 
     const handleAddSubmit: SubmitHandler<IDealer> = async (data) => {
         await handleAdd(data)
@@ -37,6 +37,13 @@ export const useCardForm = ({
     const methods = useForm<IDealer>({
         resolver: yupResolver(createDealerItem) as unknown as Resolver<IDealer>,
     })
+
+    useEffect(() => {
+        if(areCreateButtonsActive && isEditActive){
+            handleEditButtonsChange()
+            setAreCreateButtonsActive(false)
+        }
+    }, [areCreateButtonsActive, handleEditButtonsChange, isEditActive])
 
     useEffect(() => {
         if (isEditActive)

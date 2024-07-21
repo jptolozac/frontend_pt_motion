@@ -83,7 +83,7 @@ export const CardForm = ({
                     <div
                         className="button-section create-buttons"
                         style={{
-                            animationName: areCreateButtonsActive
+                            animationName: areCreateButtonsActive && !isEditActive
                                 ? "incoming-segment"
                                 : "hide-segment"
                         }}>
@@ -99,7 +99,7 @@ export const CardForm = ({
                     <div
                         className="button-section flex justify-end gap-2"
                         style={{
-                            animationName: isEditActive
+                            animationName: isEditActive && !areCreateButtonsActive
                                 ? "show-segment"
                                 : "hide-segment"
                         }}>
