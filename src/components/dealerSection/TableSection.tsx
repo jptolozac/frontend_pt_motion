@@ -26,13 +26,13 @@ export const TableSection = ({
 }: TableSectionProps) => {
     const [blockActions, setBlockActions] = useState(false)
 
-
     const handleDelete = async (id: number) => {
         setBlockActions(true)
         await deleteDealer(id)
         refreshData()
         setBlockActions(false)
     }
+
     return (
         <Table headers={["Marca", "Sucursal", "Aspirante"]}>
             <tbody className="pt-8">
@@ -40,8 +40,8 @@ export const TableSection = ({
                     <TableRow key={idx}>
                         <TableData>{dealer.brand}</TableData>
                         <TableData className="text-center">{dealer.branch}</TableData>
-                        <TableData className="flex justify-between items-center h-full gap-8">
-                            <div className="min-w-[100px] w-full">
+                        <TableData className="flex justify-between items-center h-full gap-2">
+                            <div className="w-full">
                                 {dealer.applicant}
                             </div>
                             <div className="flex items-center justify-end gap-4 max-w-[100px] w-full flex-wrap">

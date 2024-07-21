@@ -1,3 +1,4 @@
+import './InputBaseForm.css'
 import { useFormContext } from "react-hook-form"
 
 interface InputBaseFormProps {
@@ -12,7 +13,7 @@ export const InputBaseForm = ({ children, name, active }: InputBaseFormProps) =>
     const error = formState.errors[name!]
 
     return (
-        <div className="my-8">
+        <div className="base">
             {children}
             <div
                 className="text-red1 text-sm font-semibold mt-1 ml-20"

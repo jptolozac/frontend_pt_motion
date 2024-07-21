@@ -8,14 +8,12 @@ import personIconActive from "@/assets/Icon_persona1.svg"
 import createIcon from "@/assets/Icon_crear.svg"
 import cancelIcon from "@/assets/Icon_cancelar.svg"
 import confirmIcon from "@/assets/Icon_confirmar.svg"
-import { useEffect, useState } from "react"
 import './CardForm.css'
-import { FormProvider, Resolver, SubmitHandler, useForm } from "react-hook-form"
-import { yupResolver } from "@hookform/resolvers/yup"
+import { FormProvider, SubmitHandler } from "react-hook-form"
 import { IDealer } from "../../types/dealer"
-import { createDealerItem } from "../../helpers/Validations"
+import { useCardForm } from "@/hooks/useCardForm"
 
-interface CardFormProps {
+export interface CardFormProps {
     areEditButtonsActive?: boolean;
     handleActiveEditButtons?: () => void;
     handleAdd: SubmitHandler<IDealer>;
@@ -30,44 +28,23 @@ export const CardForm = ({
     handleEdit,
     currentRecord
 }: CardFormProps) => {
-    const [areCreateButtonsActive, setAreCreateButtonsActive] = useState(false)
-    const [isEditActive, setIsEditActive] = useState(false)
-
-    const handleEditButtonsChange = () => {
-        currentRecord = undefined
-
-        if (handleActiveEditButtons)
-            handleActiveEditButtons()
-        setIsEditActive(!isEditActive)
-    }
-
-    const handleAddSubmit: SubmitHandler<IDealer> = async (data) => {
-        await handleAdd(data)
-        setAreCreateButtonsActive(false)
-    }
-
-    useEffect(() => {
-        setIsEditActive(areEditButtonsActive)
-    }, [areEditButtonsActive])
-
-
-    const methods = useForm<IDealer>({
-        resolver: yupResolver(createDealerItem) as unknown as Resolver<IDealer>,
+    const {
+        methods,
+        areCreateButtonsActive,
+        isEditActive,
+        handleAddSubmit,
+        setAreCreateButtonsActive,
+        handleEditButtonsChange
+    } = useCardForm({
+        areEditButtonsActive,
+        handleActiveEditButtons,
+        handleAdd,
+        handleEdit,
+        currentRecord
     })
 
-    useEffect(() => {
-        if (isEditActive)
-            methods.reset(currentRecord)
-        else
-            methods.reset({
-                brand: "",
-                branch: "",
-                applicant: ""
-            })
-    }, [currentRecord, isEditActive, methods])
-
     return (
-        <div className="h-fit max-w-full px-4 inline-block">
+        <div className="h-fit max-w-full px-4 inline-block card-form">
             <FormProvider {...methods}>
                 <form
                     onSubmit={methods.handleSubmit(
@@ -75,15 +52,15 @@ export const CardForm = ({
                             ? handleAddSubmit
                             : handleEdit
                     )}
-                    className="shadow-custom-md px-16 py-2 rounded-3xl h-fit w-[600px] min-w-[500px] relative"
+                    className="shadow-custom-md px-[10%] py-2 rounded-3xl h-fit w-[600px] max-w-full relative"
                 >
                     <button
                         type="button"
-                        className="absolute top-4 left-6"
+                        className="floating-button"
                         onClick={() => setAreCreateButtonsActive(true)}
                         disabled={areCreateButtonsActive}
                     >
-                        <img src={createIcon} alt="Botón para crear un registro" />
+                        <img src={createIcon} alt="Botón para crear un registro" className="w-fit" />
                     </button>
                     <TextInput
                         name="brand"
@@ -113,14 +90,14 @@ export const CardForm = ({
                         <button
                             type="button"
                             onClick={() => setAreCreateButtonsActive(false)}
-                            className="border-2 border-red1 px-6 py-1 text-3xl text-grey1 font-[500] rounded-xl min-w-[175px]"
+                            className="border-2 border-red1 px-6 text-grey1 font-[500] rounded-xl"
                         >Cancelar</button>
                         <button
-                            className="border-2 border-blue2 px-6 py-1 text-3xl text-grey1 font-[500] rounded-xl min-w-[175px]"
+                            className="border-2 border-blue2 px-6 text-grey1 font-[500] rounded-xl"
                         >Crear</button>
                     </div>
                     <div
-                        className="button-section flex justify-end gap-4"
+                        className="button-section flex justify-end gap-2"
                         style={{
                             animationName: isEditActive
                                 ? "show-segment"

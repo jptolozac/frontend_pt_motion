@@ -10,8 +10,32 @@
 .create-buttons{
     display: flex;
     justify-content: end;
-    gap: 50px;
+    gap: 2em;
 }
+
+.card-form *{
+    font-size: clamp(1rem, 4vw, 1.6rem);
+}
+
+.create-buttons>button {
+    font-size: clamp(1.2rem, 4vw, 1.8rem);
+    width: 175px;
+    max-width: 100%;
+}
+
+.floating-button{
+    position: absolute;
+    top: clamp(.5rem, 5%, 1rem);
+    left: clamp(.5rem, 4%, 1.5rem);
+    width: clamp(1.6rem, 6%, 100%);
+    max-width: 34px;
+}
+
+.button-section img{
+    width: clamp(2.2rem, 5vw, 45px);
+}
+
+/* absolute top-4 left-6 */
 
 @keyframes incoming-segment {
     from {

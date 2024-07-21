@@ -4,10 +4,11 @@ import { IDealer } from '../types/dealer'
 
 export const getDealerData = async () => {
     try {
-        const response = await fetch(`${API_CONFIG.baseUrl}${API_CONFIG.dealer}`)
+        const response = await fetch(`${API_CONFIG.baseUrl}${API_CONFIG.dealer}/?ordering=id`)
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const data: Array<any> = await response.json()
-
+        console.log(data);
+        
         const dealerDataFormated = data.map(dealer => ({
             id: dealer.id,
             brand: dealer.brand.name,

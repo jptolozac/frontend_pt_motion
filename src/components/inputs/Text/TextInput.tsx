@@ -1,5 +1,5 @@
 import { useFormContext } from 'react-hook-form';
-import { InputBaseForm } from '../InputBaseForm';
+import { InputBaseForm } from '../InputBase/InputBaseForm';
 import './TextInput.css'
 import { useEffect } from 'react';
 
@@ -22,9 +22,9 @@ export const TextInput = ({ img, alt, name, placeholder, active = true }: TextIn
 
     return (
         <InputBaseForm name={name} active={active}>
-            <div className="flex gap-8 items-center">
+            <div className="input-container">
                 {img &&
-                    <div className="max-w-[47px]">
+                    <div className="max-w-[47px] w-fit">
                         <img
                             src={img}
                             alt={alt || "Imágen en referencia al ínput"}
