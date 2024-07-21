@@ -16,41 +16,64 @@ import { IDealer } from "../../types/dealer"
 import { createDealerItem } from "../../helpers/Validations"
 
 interface CardFormProps {
-    areEditButtonsActive?: boolean,
-    handleActiveEditButtons?: () => void
+    areEditButtonsActive?: boolean;
+    handleActiveEditButtons?: () => void;
+    handleAdd: SubmitHandler<IDealer>;
+    handleEdit: SubmitHandler<IDealer>;
+    currentRecord?: IDealer
 }
 
-export const CardForm = ({ areEditButtonsActive = false, handleActiveEditButtons }: CardFormProps) => {
+export const CardForm = ({ 
+    areEditButtonsActive = false, 
+    handleActiveEditButtons, 
+    handleAdd, 
+    handleEdit,
+    currentRecord
+}: CardFormProps) => {
     const [areCreateButtonsActive, setAreCreateButtonsActive] = useState(false)
     const [isEditActive, setIsEditActive] = useState(false)
 
-    const handleSubmit: SubmitHandler<IDealer> = async (data) => {
-        setAreCreateButtonsActive(false)
-        if(handleActiveEditButtons)
-            handleActiveEditButtons()
-        console.log(data);
-    }
-
     const handleEditButtonsChange = () => {
+        currentRecord = undefined
+
         if (handleActiveEditButtons)
             handleActiveEditButtons()
         setIsEditActive(!isEditActive)
+    }
+
+    const handleAddSubmit: SubmitHandler<IDealer> = async (data) => {
+        await handleAdd(data)
+        setAreCreateButtonsActive(false)
     }
 
     useEffect(() => {
         setIsEditActive(areEditButtonsActive)
     }, [areEditButtonsActive])
 
-    const methods = useForm<IDealer>({
-        resolver: yupResolver(createDealerItem) as unknown as Resolver<IDealer>
-    })
-    console.log(isEditActive);
     
+    const methods = useForm<IDealer>({
+        resolver: yupResolver(createDealerItem) as unknown as Resolver<IDealer>,
+    })
+
+    useEffect(() => {        
+        if(isEditActive)
+            methods.reset(currentRecord)
+        else
+            methods.reset({
+                brand: "",
+                branch: "",
+                applicant: ""
+            })
+    }, [currentRecord, isEditActive, methods])
 
     return (
         <FormProvider {...methods}>
             <form
-                onSubmit={methods.handleSubmit(handleSubmit)}
+                onSubmit={methods.handleSubmit(
+                    areCreateButtonsActive && !isEditActive
+                        ? handleAddSubmit
+                        : handleEdit
+                    )}
                 className="shadow-custom-md px-16 py-2 rounded-xl h-fit w-[650px] relative"
             >
                 <button

@@ -1,5 +1,6 @@
 export interface IDealer {
-    brand: string,
-    branch: string,
+    id?: number;
+    brand: string;
+    branch: string;
     applicant: string;
 }
