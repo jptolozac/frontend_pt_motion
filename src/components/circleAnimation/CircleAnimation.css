@@ -18,8 +18,8 @@
         height: 50vw;
     }
     to {
-        width: calc(100vh + 100vw);
-        height: calc(100vh + 100vw);
+        width: calc(200vh + 200vw);
+        height: calc(200vh + 200vw);
     }
 }
 
